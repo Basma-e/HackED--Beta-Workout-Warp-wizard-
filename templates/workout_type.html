@@ -1,1 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workout Selection</title>
+</head>
+<body>
+    <h1>Workout Selection</h1>
 
+    <p>
+        Hello, {{ user_name }}! Choose your preferred workout category:
+    </p>
+
+    <form action="{{ url_for('choose_exercises') }}" method="post">
+        <label for="category">Select Category:</label>
+        <select id="category" name="category" required>
+            <option value="upper_body">Upper Body</option>
+            <option value="lower_body">Lower Body</option>
+            <option value="full_body">Full Body</option>
+        </select>
+
+        <div id="upper_body_section" class="hidden">
+            <h2>Upper Body Exercises</h2>
+            <label>
+                <input type="checkbox" name="exercises" value="Chest"> Chest
+            </label>
+            <label>
+                <input type="checkbox" name="exercises" value="Back"> Back
+            </label>
+            <label>
+                <input type="checkbox" name="exercises" value="Arms"> Arms
+            </label>
+            <label>
+                <input type="checkbox" name="exercises" value="Core"> Core
+            </label>
+        </div>
+
+        <div id="lower_body_section" class="hidden">
+            <h2>Lower Body Exercises</h2>
+            <label>
+                <input type="checkbox" name="exercises" value="Legs"> Legs
+            </label>
+            <label>
+                <input type="checkbox" name="exercises" value="Glutes"> Glutes
+            </label>
+        </div>
+
+        <div id="full_body_section" class="hidden">
+            <h2>Full Body Exercises</h2>
+            <!-- Add options for Full Body exercises if needed -->
+        </div>
+
+        <br>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        // JavaScript to toggle visibility of dropdown sections based on the selected category
+        document.getElementById('category').addEventListener('change', function() {
+            var selectedCategory = this.value;
+            var upperBodySection = document.getElementById('upper_body_section');
+            var lowerBodySection = document.getElementById('lower_body_section');
+            var fullBodySection = document.getElementById('full_body_section');
+
+            // Hide all sections
+            upperBodySection.classList.add('hidden');
+            lowerBodySection.classList.add('hidden');
+            fullBodySection.classList.add('hidden');
+
+            // Show the selected section
+            if (selectedCategory === 'upper_body') {
+                upperBodySection.classList.remove('hidden');
+            } else if (selectedCategory === 'lower_body') {
+                lowerBodySection.classList.remove('hidden');
+            } else if (selectedCategory === 'full_body') {
+                fullBodySection.classList.remove('hidden');
+            }
+        });
+    </script>
+</body>
+</html>
