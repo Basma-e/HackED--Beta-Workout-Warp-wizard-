@@ -1,1 +1,37 @@
-...
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workout Selection</title>
+</head>
+<body>
+    <h1>Workout Selection</h1>
+
+    <p>
+        Hello, <span id="user-name"></span>! Choose your preferred workout duration:
+    </p>
+
+    <form action="/process_workout" method="post">
+        <input type="hidden" id="user-name-hidden" name="user_name" value="">
+        
+        <button type="submit" name="duration" value="30-45 mins">30-45 mins</button>
+        <button type="submit" name="duration" value="45-60 mins">45-60 mins</button>
+        <button type="submit" name="duration" value="60-75 mins">60-75 mins</button>
+        <button type="submit" name="duration" value="75-90 mins">75-90 mins</button>
+    </form>
+
+    <script>
+        // Retrieve user name from the query parameter
+        const params = new URLSearchParams(window.location.search);
+        const userName = params.get('user_name');
+
+        // Set the user name in the HTML
+        document.getElementById('user-name').innerText = userName;
+
+        // Set the user name in the hidden input field for form submission
+        document.getElementById('user-name-hidden').value = userName;
+    </script>
+</body>
+</html>
