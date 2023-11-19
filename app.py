@@ -169,12 +169,16 @@ def process_workout():
     # For demonstration, I'm just printing the values here
     print(f"User: {user_name}, Duration: {duration}")
 
-    return redirect(url_for('display_words', words=workout_List))
+    return redirect(url_for('display_words', words=','.join(workout_List)))
+
+    #return redirect(url_for('display_words', words=workout_List))
 
 @app.route('/display_words')
 def display_words():
     # Pass the word_list to the template
     workout_List = request.args.get('words', '').split(',')
+
+    #workout_List = request.args.get('words', '').split(',')
     print(workout_List)
     return render_template('workout_display.html', words=workout_List)
 
